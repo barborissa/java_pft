@@ -3,14 +3,15 @@ package ru.stqa.pft.sandbox;
 public class MyFirstProgram {
 
     public static void main(String[] args) {
-        Point p = new Point(2,3,4,5);
+        Point p1 = new Point(1,0);
+        Point p2 = new Point(0,0);
 
         System.out.println("Расстояние на плоскости между точками " +
-                "Point1 " + "(" + p.x1 + "," + p.y1 + ")" + " и Point2 " + "(" + p.x2 + "," + p.y2 + ")" +
-                " = " + distance(p));
+                "Point1 " + "(" + p1.x + "," + p1.y + ")" + " и Point2 " + "(" + p2.x + "," + p2.y + ")" +
+                " = " + distance(p1, p2));
     }
 
-    public static double distance(Point p) {
-        return  Math.sqrt((p.y2 - p.y1) * (p.y2 - p.y1) + (p.x2 - p.x1) *  (p.x2 - p.x1));
+    public static double  distance(Point p1, Point p2) {
+        return  Math.sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) *  (p2.y - p1.y));
     }
 }
