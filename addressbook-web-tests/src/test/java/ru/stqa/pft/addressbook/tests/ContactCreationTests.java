@@ -12,6 +12,6 @@ public class ContactCreationTests extends TestBase {
             "Almaty, Kazakhstan", "+77057773931",
             "27", "May"));
     app.getContactHelper().submitContactCreation();
-    app.getNavigationHelper().returnToHomePage();
+    app.getNavigationHelper().returnToHome();
   }
 }
