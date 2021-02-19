@@ -15,3 +15,5 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 .DS_Store
 .idea/uiDesigner.xml
+.idea/codeStyles/codeStyleConfig.xml
+.idea/vcs.xml
