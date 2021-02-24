@@ -6,6 +6,12 @@ import ru.stqa.pft.addressbook.model.ContactData;
 public class ContactModificationTests extends TestBase {
   @Test
   public void testContactModification() throws Exception {
+    if (!app.getContactHelper().isThereAContact()) {
+      app.getContactHelper().createContact(new ContactData("Altynai", "Kanatpaeva",
+              "Almaty, Kazakhstan", "+77057773931",
+              "27", "May", "Test 1"), true);
+    }
+    app.getNavigationHelper().returnToHome();
     app.getContactHelper().initContactModification();
     app.getContactHelper().fillContactForm(new ContactData("Altynai", "Kanatpaeva",
             "Almaty, Kazakhstan", "+77057773931",
