@@ -14,13 +14,13 @@ public class ContactModificationTests extends TestBase {
               "Almaty, Kazakhstan", "+77057773931",
               "27", "May", "Test 1"), true);
     }
-    List<ContactData> before = app.getContactHelper().getContactList();
     app.getNavigationHelper().returnToHome();
+    List<ContactData> before = app.getContactHelper().getContactList();
     app.getContactHelper().selectContact(before.size() - 1);
     app.getContactHelper().initContactModification();
-    app.getContactHelper().fillContactForm(new ContactData("Altynai edit", "Kanatpaeva edit",
+    app.getContactHelper().fillContactForm(new ContactData("Altynai", "Kanatpaeva",
             "Almaty, Kazakhstan", "+77057773931",
-            "27", "May", null), false);
+            "27", "May", "Test 1"), false);
     app.getContactHelper().submitContactModification();
     app.getNavigationHelper().returnToHome();
     List<ContactData> after = app.getContactHelper().getContactList();
