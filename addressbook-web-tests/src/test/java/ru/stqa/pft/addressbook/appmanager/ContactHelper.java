@@ -48,8 +48,9 @@ public class ContactHelper extends HelperBase {
     confirmAlert();
   }
 
+  // init modification of the last contact
   public void initContactModification() {
-    click(By.xpath("//img[@alt='Edit']"));
+    click(By.cssSelector("tr:last-child td:nth-child(8)"));
   }
 
   public void submitContactModification() {

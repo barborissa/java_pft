@@ -28,7 +28,7 @@ public class ContactData {
                      String address, String mobile,
                      String bday, String bmonth,
                      String group) {
-    this.id = 0;
+    this.id = Integer.MAX_VALUE;
     this.firstname = firstname;
     this.surname = surname;
     this.address = address;
@@ -91,15 +91,13 @@ public class ContactData {
 
     ContactData that = (ContactData) o;
 
-    if (id != that.id) return false;
     if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
     return surname != null ? surname.equals(that.surname) : that.surname == null;
   }
 
   @Override
   public int hashCode() {
-    int result = id;
-    result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
+    int result = firstname != null ? firstname.hashCode() : 0;
     result = 31 * result + (surname != null ? surname.hashCode() : 0);
     return result;
   }
