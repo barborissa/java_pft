@@ -15,7 +15,7 @@ public class ContactModificationTests extends TestBase {
     if (app.contact().all().size() == 0) {
       app.contact().create(new ContactData()
               .withFirstname("Altynai").withSurname("Kanatpaeva").withAddress("Almaty, Kazakhstan")
-              .withBday("27").withBmonth("May")
+              .withBday("27").withBmonth("May").withMobile("123").withHomePhone("123").withWorkPhone("321")
               .withGroup("Test 1"), true);
     }
     app.goTo().home();
@@ -25,10 +25,9 @@ public class ContactModificationTests extends TestBase {
   public void testContactModification() throws Exception {
     Contacts before = app.contact().all();
     ContactData modifiedContact = before.iterator().next();
-    ContactData contact = new ContactData()
-            .withId(modifiedContact.getId())
+    ContactData contact = new ContactData().withId(modifiedContact.getId())
             .withFirstname("Altynai").withSurname("Kanatpaeva").withAddress("Almaty, Kazakhstan")
-            .withBday("27").withBmonth("May")
+            .withBday("27").withBmonth("May").withMobile("123").withHomePhone("123").withWorkPhone("321")
             .withGroup("Test 1");
     app.contact().modify(contact);
     app.goTo().home();
