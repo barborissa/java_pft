@@ -4,6 +4,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -14,7 +17,7 @@ public class ContactPhoneTests extends TestBase {
     if (app.contact().all().size() == 0) {
       app.contact().create(new ContactData()
               .withFirstname("Altynai").withSurname("Kanatpaeva").withAddress("Almaty, Kazakhstan")
-              .withBday("27").withBmonth("May").withMobile("123").withHomePhone("123").withWorkPhone("321")
+              .withBday("27").withBmonth("May").withHomePhone("11-3").withMobile("+7 (111)").withWorkPhone("321 3 3")
               .withGroup("Test 1"), true);
     }
     app.goTo().home();
@@ -25,12 +28,18 @@ public class ContactPhoneTests extends TestBase {
     app.goTo().home();
     ContactData contact = app.contact().all().iterator().next();
     ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
-    assertThat(contact.getHomePhone(), equalTo(cleaned(contactInfoFromEditForm.getHomePhone())));
-    assertThat(contact.getMobile(), equalTo(cleaned(contactInfoFromEditForm.getMobile())));
-    assertThat(contact.getWorkPhone(), equalTo(cleaned(contactInfoFromEditForm.getWorkPhone())));
+    assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
   }
+
+  private String mergePhones(ContactData contact) {
+    return Arrays.asList(contact.getHomePhone(), contact.getMobile(), contact.getWorkPhone())
+            .stream().filter((s) -> ! s.equals(""))
+            .map(ContactPhoneTests::cleaned)
+            .collect(Collectors.joining("\n"));
+  }
+
   // Remove spaces, dashes and parentheses from string
-  public String cleaned(String phone) {
+  public static String cleaned(String phone) {
     return phone.replaceAll("\\s","").replaceAll("[-()]", "");
   }
 }

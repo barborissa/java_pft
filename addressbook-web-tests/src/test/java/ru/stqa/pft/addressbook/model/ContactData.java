@@ -11,6 +11,8 @@ public class ContactData {
   private String bday;
   private String bmonth;
   private String group;
+  private String allPhones;
+
 
   public int getId() {
     return id;
@@ -66,6 +68,11 @@ public class ContactData {
     return this;
   }
 
+  public ContactData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+  }
+
   public String getFirstname() {
     return firstname;
   }
@@ -100,6 +107,10 @@ public class ContactData {
 
   public String getGroup() {
     return group;
+  }
+
+  public String getAllPhones() {
+    return allPhones;
   }
 
 
