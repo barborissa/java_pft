@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class ContactEmailsTests extends TestBase {
+public class ContactEmailTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
