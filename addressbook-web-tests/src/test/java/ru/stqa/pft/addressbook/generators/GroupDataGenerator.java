@@ -39,13 +39,13 @@ public class GroupDataGenerator {
   }
 
   private void run() throws IOException {
-    List<GroupData> groups = generateGroups(count);
+    List<GroupData> invalidGroups = generateInvalidGroups(count);
     if (format.equals("csv")) {
-      saveAsCsv(groups, new File(file));
+      saveAsCsv(invalidGroups, new File(file));
     } else if (format.equals("xml")) {
-      saveAsXml(groups, new File(file));
+      saveAsXml(invalidGroups, new File(file));
     } else if (format.equals("json")) {
-      saveAsJson(groups, new File(file));
+      saveAsJson(invalidGroups, new File(file));
     } else {
       System.out.println("Unrecognized format " + format);
     }
@@ -84,5 +84,14 @@ public class GroupDataGenerator {
               .withHeader(String.format("Header %s", i)).withFooter(String.format("Footer %s", i)));
     }
     return groups;
+  }
+
+  private List<GroupData> generateInvalidGroups(int count) {
+    List<GroupData> invalidGroups = new ArrayList<GroupData>();
+    for (int i = 0; i < count; i++) {
+      invalidGroups.add(new GroupData().withName(String.format("Test' %s", i))
+              .withHeader(String.format("Header' %s", i)).withFooter(String.format("Footer' %s", i)));
+    }
+    return invalidGroups;
   }
 }

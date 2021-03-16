@@ -11,7 +11,6 @@ import ru.stqa.pft.addressbook.model.Groups;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -46,15 +45,24 @@ public class GroupCreationTests extends TestBase {
       line = reader.readLine();
     }
     Gson gson = new Gson();
-    List<GroupData> groups = gson.fromJson(json, new TypeToken<List<GroupData>>() {}.getType()); //List<GroupdData>.class
+    List<GroupData> groups = gson.fromJson(json, new TypeToken<List<GroupData>>() {
+    }.getType()); //List<GroupdData>.class
     return groups.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
   }
 
   @DataProvider
-  public Iterator<Object[]> invalidGroups() {
-    List<Object[]> list = new ArrayList<Object[]>();
-    list.add(new Object[]{new GroupData().withName("Test 1 '").withHeader("Header 1 '").withFooter("Footer 1 '")});
-    return list.iterator();
+  public Iterator<Object[]> invalidGroupsFromJson() throws IOException {
+    BufferedReader reader = new BufferedReader(new FileReader("src/test/resources/invalidGroups.json"));
+    String json = "";
+    String line = reader.readLine();
+    while (line != null) {
+      json += line;
+      line = reader.readLine();
+    }
+    Gson gson = new Gson();
+    List<GroupData> groups = gson.fromJson(json, new TypeToken<List<GroupData>>() {
+    }.getType());
+    return groups.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
   }
 
   @Test(dataProvider = "validGroupsFromJson")
@@ -68,7 +76,7 @@ public class GroupCreationTests extends TestBase {
             before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }
 
-  @Test(dataProvider = "invalidGroups")
+  @Test(dataProvider = "invalidGroupsFromJson")
   public void testBadGroupCreation(GroupData group) throws Exception {
     app.goTo().groupPage();
     Groups before = app.group().all();
