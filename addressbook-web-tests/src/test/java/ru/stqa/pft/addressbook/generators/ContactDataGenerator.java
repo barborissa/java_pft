@@ -38,7 +38,7 @@ public class ContactDataGenerator {
   }
 
   private void run() throws IOException {
-    List<ContactData> contacts = generateContacts(count);
+    List<ContactData> contacts = generateInvalidContacts(count);
     if (format.equals("json")) {
       saveAsJson(contacts, new File(file));
     } else {
@@ -64,5 +64,17 @@ public class ContactDataGenerator {
               .withEmail3(String.format("al@test.ru %s", i)).withBday("1").withBmonth("January").withGroup(null));
     }
     return contacts;
+  }
+
+  private List<ContactData> generateInvalidContacts(int count) {
+    List<ContactData> invalidContacts = new ArrayList<ContactData>();
+    for (int i = 0; i < count; i++) {
+      invalidContacts.add(new ContactData().withFirstname(String.format("Alta ' %s", i)).withSurname(String.format("K %s", i))
+              .withAddress(String.format("Some address %s", i)).withMobile(String.format("+7 (777) 111-22-33 %s", i))
+              .withHomePhone(String.format("No homephone %s", i)).withWorkPhone(String.format("123 33 33 %s", i))
+              .withEmail(String.format("al@test.com %s", i)).withEmail2(String.format("al@test.kz %s", i))
+              .withEmail3(String.format("al@test.ru %s", i)).withBday("1").withBmonth("January").withGroup(null));
+    }
+    return invalidContacts;
   }
 }
