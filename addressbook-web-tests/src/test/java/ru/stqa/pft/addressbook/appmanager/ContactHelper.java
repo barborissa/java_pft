@@ -28,10 +28,11 @@ public class ContactHelper extends HelperBase {
     type(By.name("email3"), contactData.getEmail3());
     select(By.name("bday"), contactData.getBday());
     select(By.name("bmonth"), contactData.getBmonth());
-    if (creation) {
-      select(By.name("new_group"), contactData.getGroup());
-    } else {
-      Assert.assertFalse(isElementPresent(By.name("new_group")));
+    if (!creation) Assert.assertFalse(isElementPresent(By.name("new_group")));
+    else {
+      if (contactData.getGroup() != null) {
+        select(By.name("new_group"), contactData.getGroup());
+      }
     }
   }
 
