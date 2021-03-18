@@ -10,8 +10,7 @@
     "email2": "al@test.kz 0",
     "email3": "al@test.ru 0",
     "bday": "1",
-    "bmonth": "January",
-    "group": "Test 1"
+    "bmonth": "January"
   },
   {
     "firstname": "Alta 1",
@@ -24,8 +23,7 @@
     "email2": "al@test.kz 1",
     "email3": "al@test.ru 1",
     "bday": "1",
-    "bmonth": "January",
-    "group": "Test 1"
+    "bmonth": "January"
   },
   {
     "firstname": "Alta 2",
@@ -38,7 +36,6 @@
     "email2": "al@test.kz 2",
     "email3": "al@test.ru 2",
     "bday": "1",
-    "bmonth": "January",
-    "group": "Test 1"
+    "bmonth": "January"
   }
 ]

@@ -61,7 +61,7 @@ public class ContactDataGenerator {
               .withAddress(String.format("Some address %s", i)).withMobile(String.format("+7 (777) 111-22-33 %s", i))
               .withHomePhone(String.format("No homephone %s", i)).withWorkPhone(String.format("123 33 33 %s", i))
               .withEmail(String.format("al@test.com %s", i)).withEmail2(String.format("al@test.kz %s", i))
-              .withEmail3(String.format("al@test.ru %s", i)).withBday("1").withBmonth("January").withGroup(("Test 1")));
+              .withEmail3(String.format("al@test.ru %s", i)).withBday("1").withBmonth("January").withGroup(null));
     }
     return contacts;
   }
