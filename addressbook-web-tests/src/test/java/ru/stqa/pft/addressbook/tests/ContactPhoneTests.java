@@ -14,11 +14,11 @@ public class ContactPhoneTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
-    if (app.contact().all().size() == 0) {
+    if (app.db().contacts().size() == 0) {
       app.contact().create(new ContactData()
               .withFirstname("Altynai").withSurname("Kanatpaeva").withAddress("Almaty, Kazakhstan")
               .withBday("27").withBmonth("May").withHomePhone("11-3").withMobile("+7 (111)").withWorkPhone("321 3 3")
-              .withGroup("Test 1"), true);
+              .withGroup(null), true);
     }
     app.goTo().home();
   }
@@ -33,13 +33,13 @@ public class ContactPhoneTests extends TestBase {
 
   private String mergePhones(ContactData contact) {
     return Arrays.asList(contact.getHomePhone(), contact.getMobile(), contact.getWorkPhone())
-            .stream().filter((s) -> ! s.equals(""))
+            .stream().filter((s) -> !s.equals(""))
             .map(ContactPhoneTests::cleaned)
             .collect(Collectors.joining("\n"));
   }
 
   // Remove spaces, dashes and parentheses from string
   public static String cleaned(String phone) {
-    return phone.replaceAll("\\s","").replaceAll("[-()]", "");
+    return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
   }
 }
