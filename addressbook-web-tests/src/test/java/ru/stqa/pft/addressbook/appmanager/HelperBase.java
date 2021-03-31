@@ -21,8 +21,8 @@ public class HelperBase {
   public void type(By locator, String text) {
     click(locator);
     if (text != null) {
-      String existingeText = wd.findElement(locator).getAttribute("value");
-      if (! text.equals(existingeText)) {
+      String existingText = wd.findElement(locator).getAttribute("value");
+      if (! text.equals(existingText)) {
         wd.findElement(locator).clear();
         wd.findElement(locator).sendKeys(text);
       }
@@ -36,8 +36,13 @@ public class HelperBase {
     }
 
   public void select(By locator, String value) {
-    wd.findElement(locator).click();
-    new Select(wd.findElement(locator)).selectByVisibleText(value);
+    if (value != null) {
+      String existingValue = wd.findElement(locator).getAttribute("value");
+      if (! value.equals(existingValue)) {
+        wd.findElement(locator).click();
+        new Select(wd.findElement(locator)).selectByVisibleText(value);
+      }
+    }
   }
 
   public void confirmAlert() {
