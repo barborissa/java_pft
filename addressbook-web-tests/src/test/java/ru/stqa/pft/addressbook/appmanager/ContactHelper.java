@@ -52,6 +52,11 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
   }
 
+  public void selectContactWithoutGroup(ContactData contact) {
+    new Select(wd.findElement(By.name("group"))).selectByVisibleText("[none]");
+    click(By.xpath(String.format("//input[@type='checkbox']", contact.getId())));
+  }
+
   private void initContactModificationById(int id) {
 //    wd.findElement(By.cssSelector("a[href='edit.php?id=" + id + "']")).click();
     wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
@@ -119,17 +124,16 @@ public class ContactHelper extends HelperBase {
   }
 
   public void addContactToGroup(ContactData contact, GroupData group) {
-    selectContactById(contact.getId());
+    selectContactWithoutGroup(contact);
     selectGroupFromList(group);
     addToGroup();
   }
 
-  public void removeContactToGroup(ContactData contact, GroupData group) {
+  public void removeContactFromGroup(ContactData contact, GroupData group) {
     sortContactsByGroup(group);
     selectContactById(contact.getId());
     removeFromGroup();
   }
-
 
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
