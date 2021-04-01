@@ -20,7 +20,7 @@ public class ContactEmailTests extends TestBase {
               .withFirstname("Altynai").withSurname("Kanatpaeva").withAddress("Almaty, Kazakhstan")
               .withHomePhone("11-3").withMobile("+7 (111)").withWorkPhone("321 3 3")
               .withEmail("a.test@test.com").withEmail2("a.test@test.ru").withEmail3("a.test@test.kz")
-              .withBday("27").withBmonth("May").withGroup(null), true);
+              .withBday("27").withBmonth("May"), true);
     }
     app.goTo().home();
   }

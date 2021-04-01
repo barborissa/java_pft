@@ -24,18 +24,5 @@
     "email3": "al@test.ru 1",
     "bday": "1",
     "bmonth": "January"
-  },
-  {
-    "firstname": "Alta 2",
-    "surname": "K 2",
-    "address": "Some address 2",
-    "mobile": "+7 (777) 111-22-33 2",
-    "homePhone": "No homephone 2",
-    "workPhone": "123 33 33 2",
-    "email": "al@test.com 2",
-    "email2": "al@test.kz 2",
-    "email3": "al@test.ru 2",
-    "bday": "1",
-    "bmonth": "January"
   }
 ]
