@@ -23,6 +23,10 @@ public class ApplicationManager {
   private FtpHelper ftp;
   private MailHelper mailHelper;
   private JamesHelper jamesHelper;
+  private NavigationHelper navigationHelper;
+  private DbHelper dbHelper;
+  private UserEditorHelper userEditor;
+  private WebSessionHelper webSessionHelper;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -32,6 +36,8 @@ public class ApplicationManager {
   public void init() throws IOException {
     String target = System.getProperty("target", "local");
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+
+    dbHelper = new DbHelper();
   }
 
   private boolean isElementPresent(By by) {
@@ -94,7 +100,33 @@ public class ApplicationManager {
     return jamesHelper;
   }
 
+  public NavigationHelper goTo() {
+    if (navigationHelper == null) {
+      navigationHelper = new NavigationHelper(this);
+    }
+    return navigationHelper;
+  }
+
+  public DbHelper db() {
+    return dbHelper;
+  }
+
+  public UserEditorHelper userEditor() {
+    if(userEditor == null) {
+      userEditor = new UserEditorHelper(this);
+    }
+    return userEditor;
+  }
+
+  public WebSessionHelper session() {
+    if(webSessionHelper == null) {
+      webSessionHelper = new WebSessionHelper(this);
+    }
+    return webSessionHelper;
+  }
+
   public WebDriver getDriver() {
+
     if (wd == null) {
       if (browser.equals(BrowserType.CHROME)) {
         wd = new ChromeDriver();
