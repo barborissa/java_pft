@@ -35,7 +35,7 @@ public class HbConnectionTest {
   public void testHbConnection() {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
-    List<UserData> result = session.createQuery("from UserData where enabled = '1'").list();
+    List<UserData> result = session.createQuery("from UserData where username <> 'administrator' AND enabled = '1'").list();
     session.getTransaction().commit();
     session.close();
 

@@ -14,7 +14,7 @@ public class DbConnectionTest {
     try {
       conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bugtracker?user=root&password=");
       Statement st = conn.createStatement();
-      ResultSet rs = st.executeQuery("SELECT id,username,realname,email,enabled FROM mantis_user_table where enabled = '1'");
+      ResultSet rs = st.executeQuery("SELECT id,username,realname,email FROM mantis_user_table where username <> 'administrator' AND enabled = '1'");
       Users users = new Users();
       while (rs.next()) {
         users.add(new UserData().withId(rs.getInt("id")).withUsername(rs.getString("username"))
@@ -34,6 +34,4 @@ public class DbConnectionTest {
     }
 
   }
-
-
 }

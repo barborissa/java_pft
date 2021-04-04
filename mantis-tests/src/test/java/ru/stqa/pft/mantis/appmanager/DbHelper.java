@@ -24,10 +24,9 @@ public class DbHelper {
   public Users users() {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
-    List<UserData> result = session.createQuery("from mantis_user_table where not (username <=> 'administrator')").list();
+    List<UserData> result = session.createQuery("from UserData where username <> 'administrator' and enabled = '1'").list();
     session.getTransaction().commit();
     session.close();
     return new Users(result);
   }
-
 }
