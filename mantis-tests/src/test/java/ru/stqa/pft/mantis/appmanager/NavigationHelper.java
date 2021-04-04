@@ -13,7 +13,7 @@ public class NavigationHelper extends HelperBase {
     if (isElementPresent(By.xpath("///h4[@innertext='Site Information']"))) {
       return;
     }
-    click(By.xpath("//div[@id='sidebar']/ul/li[6]/a/i"));
+    click(By.cssSelector("i.fa.fa-gears.menu-icon"));
   }
 
   public void manageUserPage() {
