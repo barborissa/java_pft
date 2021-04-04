@@ -27,6 +27,7 @@ public class ApplicationManager {
   private DbHelper dbHelper;
   private UserEditorHelper userEditor;
   private WebSessionHelper webSessionHelper;
+  private SoapHelper soapHelper;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -112,17 +113,24 @@ public class ApplicationManager {
   }
 
   public UserEditorHelper userEditor() {
-    if(userEditor == null) {
+    if (userEditor == null) {
       userEditor = new UserEditorHelper(this);
     }
     return userEditor;
   }
 
   public WebSessionHelper session() {
-    if(webSessionHelper == null) {
+    if (webSessionHelper == null) {
       webSessionHelper = new WebSessionHelper(this);
     }
     return webSessionHelper;
+  }
+
+  public SoapHelper soap() {
+    if (soapHelper == null) {
+      soapHelper = new SoapHelper(this);
+    }
+    return soapHelper;
   }
 
   public WebDriver getDriver() {
