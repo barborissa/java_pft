@@ -5,6 +5,7 @@ public class Issue {
   private int id;
   private String subject;
   private String description;
+  private String state;
 
   public int getId() {
     return id;
@@ -33,6 +34,15 @@ public class Issue {
     return this;
   }
 
+  public String getState() {
+    return state;
+  }
+
+  public Issue withStatus(String status) {
+    this.state = status;
+    return this;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -42,7 +52,8 @@ public class Issue {
 
     if (id != issue.id) return false;
     if (subject != null ? !subject.equals(issue.subject) : issue.subject != null) return false;
-    return description != null ? description.equals(issue.description) : issue.description == null;
+    if (description != null ? !description.equals(issue.description) : issue.description != null) return false;
+    return state != null ? state.equals(issue.state) : issue.state == null;
   }
 
   @Override
@@ -50,6 +61,7 @@ public class Issue {
     int result = id;
     result = 31 * result + (subject != null ? subject.hashCode() : 0);
     result = 31 * result + (description != null ? description.hashCode() : 0);
+    result = 31 * result + (state != null ? state.hashCode() : 0);
     return result;
   }
 }
