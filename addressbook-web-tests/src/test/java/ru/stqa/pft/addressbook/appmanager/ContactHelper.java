@@ -85,7 +85,7 @@ public class ContactHelper extends HelperBase {
 
   public void selectGroupFromList(GroupData group) {
     wd.findElement(By.name("to_group")).click();
-    new Select(wd.findElement(By.name("to_group"))).selectByValue(Integer.toString(group.getId()));
+    new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(group.getName());
   }
 
   public void addToGroup() {
@@ -123,8 +123,8 @@ public class ContactHelper extends HelperBase {
     contactCache = null;
   }
 
-  public void addContactToGroup(ContactData contact, GroupData group) {
-    selectContactWithoutGroup(contact);
+  public void addedContactToGroup(ContactData contact, GroupData group) {
+    selectContactById(contact.getId());
     selectGroupFromList(group);
     addToGroup();
   }

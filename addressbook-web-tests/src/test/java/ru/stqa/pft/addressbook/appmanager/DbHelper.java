@@ -42,21 +42,33 @@ public class DbHelper {
     return new Contacts(result);
   }
 
-  public ContactData contactWithoutGroup() {
+  public ContactData contactById(int id) {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
-    List<ContactData> result = session.createQuery("from ContactData where deprecated = '0000-00-00'").list();
+    List<ContactData> result
+            = session.createQuery(String.format("from ContactData where id = %s", id)).list();
     session.getTransaction().commit();
     session.close();
     return result.iterator().next();
   }
 
-  public ContactData contactById(int id) {
+  public ContactData contactWithGroup() {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
-    List<ContactData> result = session.createQuery(String.format("from ContactData where id = %s", id)).list();
+    List<ContactData> result
+            = session.createQuery("from ContactData where deprecated = '0000-00-00' and groups.size > 0").list();
     session.getTransaction().commit();
     session.close();
     return result.iterator().next();
+  }
+
+  public Contacts contactsInGroup() {
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    List<ContactData> result
+            = session.createQuery("from ContactData where deprecated = '0000-00-00' and groups.size > 0").list();
+    session.getTransaction().commit();
+    session.close();
+    return new Contacts(result);
   }
 }
