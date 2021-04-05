@@ -1,0 +1,6 @@
+ru/stqa/pft/sandbox/PointTests.java
+ ru.stqa.pft.sandbox.PointTests
+ru/stqa/pft/sandbox/EquationTests.java
+ ru.stqa.pft.sandbox.EquationTests
+ru/stqa/pft/sandbox/PrimeTests.java
+ ru.stqa.pft.sandbox.PrimeTests
