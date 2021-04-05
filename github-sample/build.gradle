@@ -5,6 +5,10 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.thegoate:testng:0.15.8.202102061107'
+    implementation 'org.testng:testng:7.4.0'
     implementation 'com.jcabi:jcabi-github:1.1.2'
+}
+
+test {
+    useTestNG()
 }
