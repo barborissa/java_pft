@@ -1,0 +1,28 @@
+[
+  {
+    "firstname": "Alta 0",
+    "surname": "K 0",
+    "address": "Some address 0",
+    "mobile": "+7 (777) 111-22-33 0",
+    "homePhone": "No homephone 0",
+    "workPhone": "123 33 33 0",
+    "email": "al@test.com 0",
+    "email2": "al@test.kz 0",
+    "email3": "al@test.ru 0",
+    "bday": "1",
+    "bmonth": "January"
+  },
+  {
+    "firstname": "Alta 1",
+    "surname": "K 1",
+    "address": "Some address 1",
+    "mobile": "+7 (777) 111-22-33 1",
+    "homePhone": "No homephone 1",
+    "workPhone": "123 33 33 1",
+    "email": "al@test.com 1",
+    "email2": "al@test.kz 1",
+    "email3": "al@test.ru 1",
+    "bday": "1",
+    "bmonth": "January"
+  }
+]
