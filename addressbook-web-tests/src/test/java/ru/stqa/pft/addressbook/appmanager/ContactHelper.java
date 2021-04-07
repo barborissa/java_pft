@@ -123,8 +123,8 @@ public class ContactHelper extends HelperBase {
     contactCache = null;
   }
 
-  public void addedContactToGroup(ContactData contact, GroupData group) {
-    selectContactById(contact.getId());
+  public void addContactToGroup(ContactData contact, GroupData group) {
+    selectContactWithoutGroup(contact);
     selectGroupFromList(group);
     addToGroup();
   }

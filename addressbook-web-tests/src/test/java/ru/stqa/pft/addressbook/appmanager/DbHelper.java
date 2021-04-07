@@ -52,14 +52,14 @@ public class DbHelper {
     return result.iterator().next();
   }
 
-  public ContactData contactWithGroup() {
+  public Contacts contactsWithoutGroup() {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
     List<ContactData> result
-            = session.createQuery("from ContactData where deprecated = '0000-00-00' and groups.size > 0").list();
+            = session.createQuery("from ContactData where deprecated = '0000-00-00' and groups.size = 0").list();
     session.getTransaction().commit();
     session.close();
-    return result.iterator().next();
+    return new Contacts(result);
   }
 
   public Contacts contactsInGroup() {

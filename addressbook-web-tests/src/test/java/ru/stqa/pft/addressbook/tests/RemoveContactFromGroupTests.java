@@ -8,7 +8,7 @@ import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
-public class ContactGroupTests extends TestBase {
+public class RemoveContactFromGroupTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
@@ -17,27 +17,17 @@ public class ContactGroupTests extends TestBase {
       app.group().create(new GroupData().withName("Test 1"));
     }
     app.goTo().home();
-    if (app.db().contacts().size() == 0 || app.db().contactsInGroup().size() == 0) {
-      app.contact().create(new ContactData()
-              .withFirstname("Altynai").withSurname("Kanatpaeva")
-              .withAddress("Almaty, Kazakhstan\nPanfilov street")
-              .withHomePhone("11-3").withMobile("+7 (111)").withWorkPhone("321 3 3")
-              .withEmail("a.test@test.com").withEmail2("a.test@test.ru").withEmail3("a.test@test.kz")
-              .withBday("27").withBmonth("May").inGroup(new GroupData().withName("Test 1")), true);
+    if (app.db().contactsInGroup().size() == 0) {
+      if (app.db().contacts().size() == 0) {
+        app.contact().create(new ContactData()
+                .withFirstname("Altynai").withSurname("Kanatpaeva"), true);
+      }
+      app.goTo().home();
+      ContactData contact = app.db().contacts().iterator().next();
+      GroupData group = app.db().groups().iterator().next();
+      app.goTo().home();
+      app.contact().addContactToGroup(contact, group);
     }
-  }
-
-  @Test
-  public void testAddAnyContactToGroup() {
-    app.goTo().home();
-    Contacts contacts = app.db().contacts();
-    ContactData contact = contacts.iterator().next();
-    Groups groups = app.db().groups();
-    GroupData group = groups.iterator().next();
-    app.goTo().home();
-    app.contact().addedContactToGroup(contact, group);
-    ContactData addedContact = app.db().contactById(contact.getId());
-    Assert.assertTrue(addedContact.getGroups().contains(group));
   }
 
   @Test
