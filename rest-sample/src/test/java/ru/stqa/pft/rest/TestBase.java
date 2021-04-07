@@ -8,7 +8,6 @@ import com.jayway.restassured.RestAssured;
 import org.testng.SkipException;
 
 import java.io.IOException;
-import java.util.Objects;
 import java.util.Set;
 
 public class TestBase {
@@ -17,7 +16,8 @@ public class TestBase {
     String json = RestAssured.get("https://bugify.stqa.ru/api/issues.json").asString();
     JsonElement parsed = new JsonParser().parse(json);
     JsonElement issues = parsed.getAsJsonObject().get("issues");
-    return new Gson().fromJson(issues, new TypeToken<Set<Issue>>() {}.getType());
+    return new Gson().fromJson(issues, new TypeToken<Set<Issue>>() {
+    }.getType());
   }
 
   public int createIssue(Issue newIssue) throws IOException {
@@ -29,9 +29,17 @@ public class TestBase {
     return parsed.getAsJsonObject().get("issue_id").getAsInt();
   }
 
+  public Issue getAnIssue(int issueId) throws IOException {
+    String json = RestAssured.get("https://bugify.stqa.ru/api/issues/" + issueId + ".json").asString();
+    JsonElement parsed = new JsonParser().parse(json);
+    JsonElement issues = parsed.getAsJsonObject().get("issues");
+    Set<Issue> issueSet = new Gson().fromJson(issues, new TypeToken<Set<Issue>>() {
+    }.getType());
+    return issueSet.stream().findFirst().get();
+  }
+
   public boolean isIssueOpen(int issueId) throws IOException {
-    Issue issue = getIssues().stream()
-            .filter(Issue -> Objects.equals(issueId, Issue.getId())).findAny().get();
+    Issue issue = getAnIssue(issueId);
     if (issue.getState().equals("Resolved") || issue.getState().equals("Closed")
             || issue.getState().equals("Deleted")) {
       return false;
