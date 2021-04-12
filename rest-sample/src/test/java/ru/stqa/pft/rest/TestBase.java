@@ -40,8 +40,8 @@ public class TestBase {
 
   public boolean isIssueOpen(int issueId) throws IOException {
     Issue issue = getAnIssue(issueId);
-    if (issue.getState().equals("Resolved") || issue.getState().equals("Closed")
-            || issue.getState().equals("Deleted")) {
+    if (issue.getState_name().equals("Resolved") || issue.getState_name().equals("Closed")
+            || issue.getState_name().equals("Deleted")) {
       return false;
     }
     return true;

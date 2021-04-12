@@ -5,7 +5,7 @@ public class Issue {
   private int id;
   private String subject;
   private String description;
-  private String state;
+  private String state_name;
 
   public int getId() {
     return id;
@@ -34,12 +34,12 @@ public class Issue {
     return this;
   }
 
-  public String getState() {
-    return state;
+  public String getState_name() {
+    return state_name;
   }
 
-  public Issue withState(String state) {
-    this.state = state;
+  public Issue withState(String state_name) {
+    this.state_name = state_name;
     return this;
   }
 
@@ -53,7 +53,7 @@ public class Issue {
     if (id != issue.id) return false;
     if (subject != null ? !subject.equals(issue.subject) : issue.subject != null) return false;
     if (description != null ? !description.equals(issue.description) : issue.description != null) return false;
-    return state != null ? state.equals(issue.state) : issue.state == null;
+    return state_name != null ? state_name.equals(issue.state_name) : issue.state_name == null;
   }
 
   @Override
@@ -61,7 +61,7 @@ public class Issue {
     int result = id;
     result = 31 * result + (subject != null ? subject.hashCode() : 0);
     result = 31 * result + (description != null ? description.hashCode() : 0);
-    result = 31 * result + (state != null ? state.hashCode() : 0);
+    result = 31 * result + (state_name != null ? state_name.hashCode() : 0);
     return result;
   }
 }
